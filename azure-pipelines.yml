@@ -21,9 +21,10 @@ steps:
     arguments: 'install -g dotnetsay'
 - task: DotNetCoreCLI@2
   inputs:
-    command: test
-    projects: '**/*Tests/*.csproj'
-    arguments: '--configuration $(buildConfiguration)'
+    command: publish
+    publishWebProjects: True
+    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+    zipAfterPublish: True
     
 variables:
   # Azure Resource Manager connection created during pipeline creation
